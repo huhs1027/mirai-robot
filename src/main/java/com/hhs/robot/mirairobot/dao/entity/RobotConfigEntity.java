@@ -9,12 +9,7 @@ import lombok.Data;
  */
 @Data
 @TableName("robot_config")
-public class RobotConfigEntity {
-
-    /**
-     * 主键id
-     */
-    private Integer id;
+public class RobotConfigEntity extends BaseEntity {
 
     /**
      * 机器人名称

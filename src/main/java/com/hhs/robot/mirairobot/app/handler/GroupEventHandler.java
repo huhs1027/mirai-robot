@@ -26,4 +26,11 @@ public interface GroupEventHandler {
      */
     boolean match(GroupMessageEvent groupMessageEvent);
 
+    /**
+     * 返回顺序
+     *
+     * @return 从小到大先执行
+     */
+    int sort();
+
 }

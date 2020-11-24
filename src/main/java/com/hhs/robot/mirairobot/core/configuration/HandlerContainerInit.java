@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class HandlerContainerInit implements CommandLineRunner {
         log.info("初始化handler");
         // 缓存handler
         List<GroupEventHandler> beanList = BeanFactory.getBeanList(GroupEventHandler.class);
+        // 排序
+        beanList.sort(Comparator.comparing(GroupEventHandler::sort));
         for (GroupEventHandler groupEventHandler : beanList) {
             EventHandlerContainer.addGroupHandler(groupEventHandler);
         }

@@ -54,6 +54,8 @@ public class RobotInit implements CommandLineRunner {
             // 注册监听事件
             Events.registerEvents(bot, EventDispatcherFactory.getDefaultDispatcher());
             log.info(robotConfigEntity.getName() + "注册完成!");
+
+            bot.join();
         }
     }
 }
