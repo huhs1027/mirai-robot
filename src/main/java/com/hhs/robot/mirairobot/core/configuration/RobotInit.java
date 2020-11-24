@@ -13,6 +13,7 @@ import net.mamoe.mirai.utils.BotConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -24,6 +25,7 @@ import java.util.List;
  * 机器人注册
  */
 @Slf4j
+@Order(2)
 @Configuration
 public class RobotInit implements CommandLineRunner {
 
