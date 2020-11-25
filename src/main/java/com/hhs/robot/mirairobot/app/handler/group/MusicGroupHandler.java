@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.message.GroupMessageEvent;
 import net.mamoe.mirai.message.data.LightApp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @author hhs
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Component;
  * 没实现... 等去github上看下大佬的写法
  */
 @Slf4j
-@Component
+//@Component
 public class MusicGroupHandler implements GroupEventHandler {
 
     @Autowired
