@@ -7,6 +7,7 @@ import com.hhs.robot.mirairobot.dao.mapper.DaGongMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -37,5 +38,17 @@ public class DaGongService {
             return records.get(0);
         }
         return null;
+    }
+
+    /**
+     * 添加打工记录
+     *
+     * @param qq qq
+     */
+    public void dagong(long qq) {
+        DaGongEntity daGongEntity = new DaGongEntity();
+        daGongEntity.setQq(qq);
+        daGongEntity.setLastTime(LocalDateTime.now());
+        daGongMapper.insert(daGongEntity);
     }
 }

@@ -54,6 +54,9 @@ public class DaGongGroupHandler implements GroupEventHandler {
             }
         }
 
+        // 添加打工记录
+        daGongService.dagong(qq);
+
         // 可以打工
         // 随机金币数
         int gold = new Random().nextInt(2) + 1;
