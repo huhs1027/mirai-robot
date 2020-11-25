@@ -52,7 +52,7 @@ public class RobotInit implements CommandLineRunner {
                             fileBasedDeviceInfo(file.getPath());
                             setBotLoggerSupplier(bot -> new RobotLog(String.valueOf(bot.getId())));
                             setNetworkLoggerSupplier(bot -> new RobotLog(bot.getId() + "-network"));
-                            setProtocol(MiraiProtocol.ANDROID_PAD);
+                            setProtocol(MiraiProtocol.ANDROID_PHONE);
                         }
                     });
                     // 加入容器
