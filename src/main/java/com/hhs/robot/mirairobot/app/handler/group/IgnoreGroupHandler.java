@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author hhs
  * @since 2020/11/24 20:32
- * 签到消息事件
+ * 未识别消息事件
  */
 @Component
 public class IgnoreGroupHandler implements GroupEventHandler {

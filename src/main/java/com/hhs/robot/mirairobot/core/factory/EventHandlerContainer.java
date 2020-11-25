@@ -1,5 +1,6 @@
 package com.hhs.robot.mirairobot.core.factory;
 
+import com.hhs.robot.mirairobot.app.handler.FriendEventHandler;
 import com.hhs.robot.mirairobot.app.handler.GroupEventHandler;
 
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class EventHandlerContainer {
 
     private static List<GroupEventHandler> groupEventHandlers = new ArrayList<>();
 
+    private static List<FriendEventHandler> friendEventHandlers = new ArrayList<>();
+
     // 群组消息处理器列表
     public static List<GroupEventHandler> getGroupEventHandlers() {
         return groupEventHandlers;
@@ -22,6 +25,18 @@ public class EventHandlerContainer {
     public static void addGroupHandler(GroupEventHandler groupEventHandler) {
         if (groupEventHandler != null) {
             groupEventHandlers.add(groupEventHandler);
+        }
+    }
+
+
+    // 好友消息处理器列表
+    public static List<FriendEventHandler> getFriendEventHandlers() {
+        return friendEventHandlers;
+    }
+
+    public static void addFriendHandler(FriendEventHandler friendEventHandler) {
+        if (friendEventHandler != null) {
+            friendEventHandlers.add(friendEventHandler);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.hhs.robot.mirairobot.core.dispatcher;
 
+import com.hhs.robot.mirairobot.app.handler.FriendEventHandler;
 import com.hhs.robot.mirairobot.app.handler.GroupEventHandler;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
 import com.hhs.robot.mirairobot.core.factory.EventHandlerContainer;
@@ -40,7 +41,8 @@ public class EventDispatcher extends SimpleListenerHost {
         }
         // 好友
         else if (event instanceof FriendMessageEvent) {
-
+            log.info("好友消息{}", event.getMessage().contentToString());
+            this.handleFriendEvent((FriendMessageEvent) event);
         }
         // 临时
         else if (event instanceof TempMessageEvent) {
@@ -61,6 +63,23 @@ public class EventDispatcher extends SimpleListenerHost {
                 MessageVO messageVO = groupEventHandler.handlerGroupMessage(event);
                 if (messageVO != null) {
                     event.getGroup().sendMessage(messageVO.build());
+                }
+            }
+        }
+    }
+
+    /**
+     * 处理群消息
+     *
+     * @param event 群消息事件
+     */
+    private void handleFriendEvent(FriendMessageEvent event) {
+        List<FriendEventHandler> friendEventHandlerList = EventHandlerContainer.getFriendEventHandlers();
+        for (FriendEventHandler friendEventHandler : friendEventHandlerList) {
+            if (friendEventHandler.match(event)) {
+                MessageVO messageVO = friendEventHandler.handlerGroupMessage(event);
+                if (messageVO != null) {
+                    event.getSender().sendMessage(messageVO.build());
                 }
             }
         }
