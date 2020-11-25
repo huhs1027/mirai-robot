@@ -91,7 +91,7 @@ public class DaGongGroupHandler implements GroupEventHandler {
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String string = groupMessageEvent.getMessage().contentToString();
-        return string.equals("打工");
+        return string.equals("!打工");
     }
 
     @Override

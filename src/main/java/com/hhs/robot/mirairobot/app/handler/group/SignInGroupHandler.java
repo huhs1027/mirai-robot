@@ -78,7 +78,7 @@ public class SignInGroupHandler implements GroupEventHandler {
 
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
-        return groupMessageEvent.getMessage().contentToString().equals("签到");
+        return groupMessageEvent.getMessage().contentToString().equals("!签到");
     }
 
     private Random random = new Random();

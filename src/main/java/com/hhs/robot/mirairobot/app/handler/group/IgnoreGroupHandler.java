@@ -28,10 +28,6 @@ public class IgnoreGroupHandler implements GroupEventHandler {
 
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
-        String string = groupMessageEvent.getMessage().contentToString();
-        if (string.contains("@" + groupMessageEvent.getBot().getNick())) {
-            return true;
-        }
         return false;
     }
 

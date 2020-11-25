@@ -59,7 +59,7 @@ public class ChoukaGroupHandler implements GroupEventHandler {
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String string = groupMessageEvent.getMessage().contentToString();
-        if (string.equals("抽卡")) {
+        if (string.equals("!抽卡")) {
             return true;
         }
         return false;

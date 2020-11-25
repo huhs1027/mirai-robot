@@ -19,10 +19,10 @@ public class HelpGroupHandler implements GroupEventHandler {
         return MessageVO.create()
                 .at(groupMessageEvent.getSender())
                 .addText("\n")
-                .addText("签到 每天一次,奖励10~20枚金币" + "\n")
-                .addText("抽卡 每次消耗10金币" + "\n")
-                .addText("详情 返回金币和卡片信息" + "\n")
-                .addText("打工 cd10分钟 每次获取1~2枚金币 有小概率获得卡片" + "\n")
+                .addText("!签到 每天一次,奖励10~20枚金币" + "\n")
+                .addText("!抽卡 每次消耗10金币" + "\n")
+                .addText("!详情 返回金币和卡片信息" + "\n")
+                .addText("!打工 cd10分钟 每次获取1~2枚金币 有小概率获得卡片" + "\n")
                 .addText("卡片使用功能后续完善")
                 ;
     }

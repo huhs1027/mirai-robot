@@ -58,7 +58,7 @@ public class InfoGroupHandler implements GroupEventHandler {
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String string = groupMessageEvent.getMessage().contentToString();
-        return string.equals("详情");
+        return string.equals("!详情");
     }
 
     @Override

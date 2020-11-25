@@ -47,7 +47,7 @@ public class MusicGroupHandler implements GroupEventHandler {
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String content = groupMessageEvent.getMessage().contentToString();
-        return content.startsWith("点歌 ");
+        return content.startsWith("!点歌 ");
     }
 
     @Override
