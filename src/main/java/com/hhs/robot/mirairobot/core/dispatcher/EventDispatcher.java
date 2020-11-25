@@ -7,6 +7,7 @@ import com.hhs.robot.mirairobot.core.factory.EventHandlerContainer;
 import kotlin.coroutines.CoroutineContext;
 import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.event.EventHandler;
+import net.mamoe.mirai.event.Listener;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.message.FriendMessageEvent;
@@ -25,7 +26,7 @@ import java.util.List;
 @Slf4j
 public class EventDispatcher extends SimpleListenerHost {
 
-    @EventHandler
+    @EventHandler(priority = Listener.EventPriority.HIGHEST)
     public ListeningStatus handle(MessageEvent event) {
         // 群组
         if (event instanceof GroupMessageEvent) {
