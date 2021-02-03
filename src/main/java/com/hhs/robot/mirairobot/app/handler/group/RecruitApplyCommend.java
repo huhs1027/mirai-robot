@@ -37,7 +37,7 @@ public class RecruitApplyCommend implements GroupEventCommend {
 
         List<String> param = MessageParamUtils.getParam(groupMessageEvent.getMessage().contentToString());
         if (param.size() != 3) {
-            return MessageVO.create().addText("[").addText(groupMessageEvent.getSender().getNick()).addText("]").addText(" ").addText("格式不正确")
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("格式不正确")
                     .addText("\n")
                     .addText("格式: .进组 招募id 职业 位置")
                     ;
@@ -48,7 +48,7 @@ public class RecruitApplyCommend implements GroupEventCommend {
         recruitEntityQueryWrapper.eq("id", param.get(0));
         RecruitEntity recruitEntity1 = recruitMapper.selectOne(recruitEntityQueryWrapper);
         if (recruitEntity1 == null) {
-            return MessageVO.create().addText("[").addText(groupMessageEvent.getSender().getNick()).addText("]").addText("招募不存在");
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText("招募不存在");
         }
 
         // 创建队员
@@ -62,7 +62,7 @@ public class RecruitApplyCommend implements GroupEventCommend {
 
         recruitApplyMapper.insert(recruitEntity);
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSender().getNick()).addText("]").addText(" ").addText("报名成功");
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("报名成功");
     }
 
     @Override

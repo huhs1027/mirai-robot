@@ -31,7 +31,7 @@ public class RecruitCommend implements GroupEventCommend {
 
         List<String> param = MessageParamUtils.getParam(groupMessageEvent.getMessage().contentToString());
         if (param.size() != 2) {
-            return MessageVO.create().addText("[").addText(groupMessageEvent.getSender().getNick()).addText("]").addText(" ").addText("格式不正确")
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("格式不正确")
                     .addText("\n")
                     .addText("格式: .开组 标题 时间")
                     ;
@@ -46,7 +46,7 @@ public class RecruitCommend implements GroupEventCommend {
         recruitEntity.setCreateDate(LocalDate.now());
         recruitMapper.insert(recruitEntity);
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSender().getNick()).addText("]").addText(" ").addText("开组成功")
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("开组成功")
                 .addText("\n")
                 .addText("招募id:").addText(recruitEntity.getId() + "")
                 ;
