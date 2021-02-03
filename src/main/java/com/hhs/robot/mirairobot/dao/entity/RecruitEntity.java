@@ -3,7 +3,7 @@ package com.hhs.robot.mirairobot.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author hhs
@@ -36,5 +36,5 @@ public class RecruitEntity extends BaseEntity {
     /**
      * 创建时间
      */
-    private LocalDate createDate;
+    private LocalDateTime createTime;
 }

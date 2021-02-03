@@ -9,7 +9,7 @@ import net.mamoe.mirai.event.events.GroupMessageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -43,7 +43,7 @@ public class RecruitCommend implements GroupEventCommend {
         recruitEntity.setNick(groupMessageEvent.getSender().getNick());
         recruitEntity.setTitle(param.get(0));
         recruitEntity.setTime(param.get(1));
-        recruitEntity.setCreateDate(LocalDate.now());
+        recruitEntity.setCreateTime(LocalDateTime.now());
         recruitMapper.insert(recruitEntity);
 
         return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("开组成功")

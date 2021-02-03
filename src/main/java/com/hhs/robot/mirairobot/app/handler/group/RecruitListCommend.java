@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -55,6 +56,7 @@ public class RecruitListCommend implements GroupEventCommend {
 
                 messageVO.addText("=============\n")
                         .addText("招募id:").addText(record.getId().toString()).addText("\n")
+                        .addText("创建时间:").addText(record.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).addText("\n")
                         .addText("队长:").addText(record.getNick()).addText("\n")
                         .addText("副本:").addText(record.getTitle()).addText("\n")
                         .addText("时间:").addText(record.getTime()).addText("\n")
