@@ -1,7 +1,6 @@
 package com.hhs.robot.mirairobot.core.factory;
 
-import com.hhs.robot.mirairobot.app.handler.FriendEventHandler;
-import com.hhs.robot.mirairobot.app.handler.GroupEventHandler;
+import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,30 +12,16 @@ import java.util.List;
  */
 public class EventHandlerContainer {
 
-    private static List<GroupEventHandler> groupEventHandlers = new ArrayList<>();
-
-    private static List<FriendEventHandler> friendEventHandlers = new ArrayList<>();
+    private static List<GroupEventCommend> groupEventHandlers = new ArrayList<>();
 
     // 群组消息处理器列表
-    public static List<GroupEventHandler> getGroupEventHandlers() {
+    public static List<GroupEventCommend> getGroupEventHandlers() {
         return groupEventHandlers;
     }
 
-    public static void addGroupHandler(GroupEventHandler groupEventHandler) {
+    public static void addGroupHandler(GroupEventCommend groupEventHandler) {
         if (groupEventHandler != null) {
             groupEventHandlers.add(groupEventHandler);
-        }
-    }
-
-
-    // 好友消息处理器列表
-    public static List<FriendEventHandler> getFriendEventHandlers() {
-        return friendEventHandlers;
-    }
-
-    public static void addFriendHandler(FriendEventHandler friendEventHandler) {
-        if (friendEventHandler != null) {
-            friendEventHandlers.add(friendEventHandler);
         }
     }
 

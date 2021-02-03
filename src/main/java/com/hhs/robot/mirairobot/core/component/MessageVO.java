@@ -25,7 +25,7 @@ public class MessageVO {
     private MessageChainBuilder messageChainBuilder = new MessageChainBuilder();
 
     public MessageVO at(Member member) {
-        messageChainBuilder.add(new At(member));
+        messageChainBuilder.add(new At(member.getId()));
         return this;
     }
 

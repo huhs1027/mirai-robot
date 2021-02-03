@@ -1,7 +1,6 @@
 package com.hhs.robot.mirairobot.core.configuration;
 
 import com.alibaba.fastjson.JSON;
-import com.hhs.robot.mirairobot.core.component.RobotLog;
 import com.hhs.robot.mirairobot.core.factory.BotContainer;
 import com.hhs.robot.mirairobot.core.factory.EventDispatcherFactory;
 import com.hhs.robot.mirairobot.dao.entity.RobotConfigEntity;
@@ -9,7 +8,6 @@ import com.hhs.robot.mirairobot.dao.mapper.RobotConfigMapper;
 import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactory;
-import net.mamoe.mirai.event.Events;
 import net.mamoe.mirai.utils.BotConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -50,8 +48,8 @@ public class RobotInit implements CommandLineRunner {
                     Bot bot = BotFactory.INSTANCE.newBot(robotConfigEntity.getQq(), robotConfigEntity.getPassword(), new BotConfiguration() {
                         {
                             fileBasedDeviceInfo(file.getPath());
-                            setBotLoggerSupplier(bot -> new RobotLog(String.valueOf(bot.getId())));
-                            setNetworkLoggerSupplier(bot -> new RobotLog(bot.getId() + "-network"));
+                            //setBotLoggerSupplier(bot -> new RobotLog(String.valueOf(bot.getId())));
+                            //setNetworkLoggerSupplier(bot -> new RobotLog(bot.getId() + "-network"));
                             setProtocol(MiraiProtocol.ANDROID_PHONE);
                         }
                     });
@@ -60,7 +58,7 @@ public class RobotInit implements CommandLineRunner {
                     // 登录
                     bot.login();
                     // 注册监听事件
-                    Events.registerEvents(bot, EventDispatcherFactory.getDefaultDispatcher());
+                    bot.getEventChannel().registerListenerHost(EventDispatcherFactory.getDefaultDispatcher());
                     log.info(robotConfigEntity.getName() + "注册完成!");
                     // 阻塞等待重连
                     bot.join();
