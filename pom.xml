@@ -26,7 +26,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mirai-core.version>1.3.3</mirai-core.version>
+        <mirai-core.version>2.2.2</mirai-core.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <mysql.version>8.0.13</mysql.version>
         <fastjson.version>1.2.52</fastjson.version>
@@ -35,10 +35,16 @@
     <dependencies>
 
         <!--mirai框架-->
+        <!--        <dependency>-->
+        <!--            <groupId>net.mamoe</groupId>-->
+        <!--            <artifactId>mirai-core-qqandroid</artifactId>-->
+        <!--            <version>${mirai-core.version}</version>-->
+        <!--        </dependency>-->
+
         <dependency>
             <groupId>net.mamoe</groupId>
-            <artifactId>mirai-core-qqandroid</artifactId>
-            <version>${mirai-core.version}</version>
+            <artifactId>mirai-core-jvm</artifactId>
+            <version>${mirai-core.version}</version> <!-- 替换版本为你需要的版本 -->
         </dependency>
 
         <dependency>

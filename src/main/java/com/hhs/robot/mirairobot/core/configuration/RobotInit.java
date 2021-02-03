@@ -8,7 +8,7 @@ import com.hhs.robot.mirairobot.dao.entity.RobotConfigEntity;
 import com.hhs.robot.mirairobot.dao.mapper.RobotConfigMapper;
 import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.Bot;
-import net.mamoe.mirai.BotFactoryJvm;
+import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.event.Events;
 import net.mamoe.mirai.utils.BotConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +47,12 @@ public class RobotInit implements CommandLineRunner {
             Runnable runnable = () -> {
                 try {
                     File file = ResourceUtils.getFile("classpath:devices/" + robotConfigEntity.getQq() + ".json");
-                    Bot bot = BotFactoryJvm.newBot(robotConfigEntity.getQq(), robotConfigEntity.getPassword(), new BotConfiguration() {
+                    Bot bot = BotFactory.INSTANCE.newBot(robotConfigEntity.getQq(), robotConfigEntity.getPassword(), new BotConfiguration() {
                         {
                             fileBasedDeviceInfo(file.getPath());
                             setBotLoggerSupplier(bot -> new RobotLog(String.valueOf(bot.getId())));
                             setNetworkLoggerSupplier(bot -> new RobotLog(bot.getId() + "-network"));
-                            setProtocol(MiraiProtocol.ANDROID_PAD);
+                            setProtocol(MiraiProtocol.ANDROID_PHONE);
                         }
                     });
                     // 加入容器
