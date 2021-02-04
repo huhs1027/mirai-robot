@@ -45,14 +45,11 @@ public class RecruitCloseCommend implements GroupEventCommend {
             return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("只能关闭自己的招募");
         }
 
-        if (recruitEntity.getClose().equals("Y")) {
-            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("已关闭");
-        }
-
         recruitEntity.setClose("Y");
         recruitMapper.updateById(recruitEntity);
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("英雄,期待下次冒险!");
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText("\n")
+                .addText("冒险结束了?\n赶快来我房间里暖暖身子……\n为你准备了伊修加德奶茶……");
     }
 
     @Override

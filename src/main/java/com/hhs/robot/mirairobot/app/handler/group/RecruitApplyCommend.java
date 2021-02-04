@@ -3,6 +3,7 @@ package com.hhs.robot.mirairobot.app.handler.group;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
+import com.hhs.robot.mirairobot.core.utils.KKUtils;
 import com.hhs.robot.mirairobot.core.utils.MessageParamUtils;
 import com.hhs.robot.mirairobot.core.utils.PositionUtils;
 import com.hhs.robot.mirairobot.dao.entity.RecruitApplyEntity;
@@ -68,7 +69,8 @@ public class RecruitApplyCommend implements GroupEventCommend {
             return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText("位置重复!");
         }
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("报名成功");
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]\n")
+                .addText(KKUtils.randomKK());
     }
 
     @Override

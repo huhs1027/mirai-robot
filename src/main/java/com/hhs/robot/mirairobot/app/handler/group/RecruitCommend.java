@@ -46,10 +46,9 @@ public class RecruitCommend implements GroupEventCommend {
         recruitEntity.setCreateTime(LocalDateTime.now());
         recruitMapper.insert(recruitEntity);
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("开组成功")
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("感受肌肉的悦动吧!")
                 .addText("\n")
-                .addText("招募id:").addText(recruitEntity.getId() + "")
-                ;
+                .addText("招募id:").addText(recruitEntity.getId() + "");
     }
 
     @Override

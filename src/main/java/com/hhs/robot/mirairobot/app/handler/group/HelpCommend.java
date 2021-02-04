@@ -2,6 +2,7 @@ package com.hhs.robot.mirairobot.app.handler.group;
 
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
+import com.hhs.robot.mirairobot.core.utils.KKUtils;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,9 @@ public class HelpCommend implements GroupEventCommend {
 
     @Override
     public MessageVO handlerGroupMessage(GroupMessageEvent groupMessageEvent) {
+
         return MessageVO.create()
-                .addText("英雄，不该流露出悲伤的表情…你还是笑起来最棒了！\n")
+                .addText(KKUtils.randomKK() + "\n")
                 .addText(".查招募 (查看最新的3个招募信息) \n")
                 .addText(".开组 标题 时间 (开启一个招募) \n")
                 .addText(".关闭 招募id (关闭自己的招募) \n")
