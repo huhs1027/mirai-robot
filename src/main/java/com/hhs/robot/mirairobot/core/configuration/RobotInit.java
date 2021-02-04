@@ -54,7 +54,7 @@ public class RobotInit implements CommandLineRunner {
                         }
                     });
                     // 加入容器
-                    BotContainer.addGroupHandler(bot);
+                    BotContainer.addGroupHandler(bot, robotConfigEntity);
                     // 登录
                     bot.login();
                     // 注册监听事件

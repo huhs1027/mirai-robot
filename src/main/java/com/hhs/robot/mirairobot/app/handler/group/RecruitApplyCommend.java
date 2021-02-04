@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
 import com.hhs.robot.mirairobot.core.utils.MessageParamUtils;
+import com.hhs.robot.mirairobot.core.utils.PositionUtils;
 import com.hhs.robot.mirairobot.dao.entity.RecruitApplyEntity;
 import com.hhs.robot.mirairobot.dao.entity.RecruitEntity;
 import com.hhs.robot.mirairobot.dao.mapper.RecruitApplyMapper;
@@ -36,15 +37,16 @@ public class RecruitApplyCommend implements GroupEventCommend {
         // .进组 1 机工 D3
 
         List<String> param = MessageParamUtils.getParam(groupMessageEvent.getMessage().contentToString());
-        if (param.size() != 3) {
+        if (param.size() != 3 || !PositionUtils.checkPosition(param.get(2))) {
             return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("格式不正确")
                     .addText("\n")
-                    .addText("格式: .进组 招募id 职业 位置")
+                    .addText("格式: .进组 招募id 职业 位置(MT/ST/H1/H2/D1/D2/D3/D4)")
                     ;
         }
 
         // 查招募
         QueryWrapper<RecruitEntity> recruitEntityQueryWrapper = new QueryWrapper<>();
+        recruitEntityQueryWrapper.eq("close", "N");
         recruitEntityQueryWrapper.eq("id", param.get(0));
         RecruitEntity recruitEntity1 = recruitMapper.selectOne(recruitEntityQueryWrapper);
         if (recruitEntity1 == null) {
@@ -60,7 +62,11 @@ public class RecruitApplyCommend implements GroupEventCommend {
         recruitEntity.setPosition(param.get(2));
         recruitEntity.setCreateTime(LocalDateTime.now());
 
-        recruitApplyMapper.insert(recruitEntity);
+        try {
+            recruitApplyMapper.insert(recruitEntity);
+        } catch (Exception e) {
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText("位置重复!");
+        }
 
         return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("报名成功");
     }
@@ -68,7 +74,7 @@ public class RecruitApplyCommend implements GroupEventCommend {
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String string = groupMessageEvent.getMessage().contentToString();
-        return string.startsWith(".报名") || string.startsWith(".进组");
+        return string.startsWith(".进组");
     }
 
     @Override

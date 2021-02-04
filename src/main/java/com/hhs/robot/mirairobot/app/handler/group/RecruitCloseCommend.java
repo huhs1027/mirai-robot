@@ -9,7 +9,6 @@ import net.mamoe.mirai.event.events.GroupMessageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
  * @since 2021/2/3 10:38
  */
 @Component
-public class RecruitCommend implements GroupEventCommend {
+public class RecruitCloseCommend implements GroupEventCommend {
 
     @Autowired
     private RecruitMapper recruitMapper;
@@ -27,35 +26,39 @@ public class RecruitCommend implements GroupEventCommend {
     @Override
     public MessageVO handlerGroupMessage(GroupMessageEvent groupMessageEvent) {
 
-        // .开组 希瓦 晚上8点半
+        // .关闭 1
 
         List<String> param = MessageParamUtils.getParam(groupMessageEvent.getMessage().contentToString());
-        if (param.size() != 2) {
+        if (param.size() != 1) {
             return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("格式不正确")
                     .addText("\n")
-                    .addText("格式: .开组 标题 时间")
-                    ;
+                    .addText("格式: .关闭 招募id");
         }
 
-        // 创建招募
-        RecruitEntity recruitEntity = new RecruitEntity();
-        recruitEntity.setQq(groupMessageEvent.getSender().getId());
-        recruitEntity.setNick(groupMessageEvent.getSender().getNick());
-        recruitEntity.setTitle(param.get(0));
-        recruitEntity.setTime(param.get(1));
-        recruitEntity.setCreateTime(LocalDateTime.now());
-        recruitMapper.insert(recruitEntity);
+        // 查招募
+        RecruitEntity recruitEntity = recruitMapper.selectById(param.get(0));
+        if (recruitEntity == null) {
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("招募不存在");
+        }
 
-        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("开组成功")
-                .addText("\n")
-                .addText("招募id:").addText(recruitEntity.getId() + "")
-                ;
+        if (!recruitEntity.getQq().equals(groupMessageEvent.getSender().getId())) {
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("只能关闭自己的招募");
+        }
+
+        if (recruitEntity.getClose().equals("Y")) {
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("已关闭");
+        }
+
+        recruitEntity.setClose("Y");
+        recruitMapper.updateById(recruitEntity);
+
+        return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText(" ").addText("英雄,期待下次冒险!");
     }
 
     @Override
     public boolean match(GroupMessageEvent groupMessageEvent) {
         String string = groupMessageEvent.getMessage().contentToString();
-        return string.startsWith(".开组");
+        return string.startsWith(".关闭");
     }
 
     @Override

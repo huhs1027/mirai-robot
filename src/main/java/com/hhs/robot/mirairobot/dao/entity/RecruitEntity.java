@@ -34,6 +34,11 @@ public class RecruitEntity extends BaseEntity {
     private String time;
 
     /**
+     * 是否关闭 Y N
+     */
+    private String close;
+
+    /**
      * 创建时间
      */
     private LocalDateTime createTime;

@@ -15,10 +15,10 @@ public class HelpCommend implements GroupEventCommend {
     @Override
     public MessageVO handlerGroupMessage(GroupMessageEvent groupMessageEvent) {
         return MessageVO.create()
-                .addText("我是招募bot=====\n")
-                .addText("version:beta1\n")
+                .addText("英雄，不该流露出悲伤的表情…你还是笑起来最棒了！\n")
                 .addText(".查招募 (查看最新的3个招募信息) \n")
                 .addText(".开组 标题 时间 (开启一个招募) \n")
+                .addText(".关闭 招募id (关闭自己的招募) \n")
                 .addText(".进组 招募id 职业 位置 (选择一个招募进队) \n")
                 ;
     }

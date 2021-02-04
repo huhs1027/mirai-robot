@@ -2,6 +2,7 @@ package com.hhs.robot.mirairobot.core.dispatcher;
 
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
+import com.hhs.robot.mirairobot.core.factory.BotContainer;
 import com.hhs.robot.mirairobot.core.factory.EventHandlerContainer;
 import kotlin.coroutines.CoroutineContext;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,11 @@ public class EventDispatcher extends SimpleListenerHost {
      */
     @EventHandler(priority = EventPriority.NORMAL)
     public void groupHandler(@NotNull GroupMessageEvent event) {
+        // 判断机器人是否符合群
+        boolean checkBotGroup = BotContainer.checkBotGroup(event.getBot().getId(), event.getSender().getGroup().getId());
+
         // 匹配指令
-        if (event.getMessage().contentToString().startsWith(".")) {
+        if (checkBotGroup && event.getMessage().contentToString().startsWith(".")) {
             List<GroupEventCommend> groupEventHandlers = EventHandlerContainer.getGroupEventHandlers();
             for (GroupEventCommend groupEventHandler : groupEventHandlers) {
                 if (groupEventHandler.match(event)) {
