@@ -66,7 +66,12 @@ public class RecruitApplyCommend implements GroupEventCommend {
         try {
             recruitApplyMapper.insert(recruitEntity);
         } catch (Exception e) {
-            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]").addText("位置重复!");
+            return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]\n")
+                    .addText("……唔,不行就算了.你有要事在身嘛.\n")
+                    .addText("不过你要是哪天想玩了,我随时欢迎.\n")
+                    .addText("毕竟你是最棒的啊!\n")
+                    .addText("(位置重复!)")
+                    ;
         }
 
         return MessageVO.create().addText("[").addText(groupMessageEvent.getSenderName()).addText("]\n")
