@@ -25,7 +25,7 @@ public class KKUtils {
     }
 
     public static String randomKK() {
-        int i = new Random().nextInt(kkList.size() + 1);
+        int i = new Random().nextInt(kkList.size());
         return kkList.get(i);
     }
 
