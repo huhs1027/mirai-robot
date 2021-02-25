@@ -2,8 +2,9 @@ package com.hhs.robot.mirairobot.core.factory;
 
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author hhs
@@ -12,17 +13,14 @@ import java.util.List;
  */
 public class EventHandlerContainer {
 
-    private static List<GroupEventCommend> groupEventHandlers = new ArrayList<>();
+    /**
+     * 指令群组map, key=qq群好, value=支持的指令
+     */
+    public static Map<Long, List<GroupEventCommend>> commendGroupMap = new HashMap<>();
 
-    // 群组消息处理器列表
-    public static List<GroupEventCommend> getGroupEventHandlers() {
-        return groupEventHandlers;
-    }
-
-    public static void addGroupHandler(GroupEventCommend groupEventHandler) {
-        if (groupEventHandler != null) {
-            groupEventHandlers.add(groupEventHandler);
-        }
-    }
+    /**
+     * 非指令
+     */
+    public static Map<Long, List<GroupEventCommend>> notCommendGroupMap = new HashMap<>();
 
 }

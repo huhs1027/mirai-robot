@@ -1,13 +1,13 @@
 package com.hhs.robot.mirairobot.app.handler.group;
 
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
+import com.hhs.robot.mirairobot.core.annon.Commend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
 import com.hhs.robot.mirairobot.core.utils.MessageParamUtils;
 import com.hhs.robot.mirairobot.dao.entity.RecruitEntity;
 import com.hhs.robot.mirairobot.dao.mapper.RecruitMapper;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author hhs
  * @since 2021/2/3 10:38
  */
-@Component
+@Commend(group = { 147392528, 724988240 })
 public class RecruitCommend implements GroupEventCommend {
 
     @Autowired

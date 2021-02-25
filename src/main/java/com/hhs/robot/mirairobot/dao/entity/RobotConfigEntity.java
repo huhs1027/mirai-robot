@@ -1,6 +1,5 @@
 package com.hhs.robot.mirairobot.dao.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -26,10 +25,4 @@ public class RobotConfigEntity extends BaseEntity {
      * 机器人密码
      */
     private String password;
-
-    /**
-     * 机器人支持的群 , 分割
-     */
-    @TableField("`group`")
-    private String group;
 }

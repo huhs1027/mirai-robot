@@ -1,16 +1,16 @@
 package com.hhs.robot.mirairobot.app.handler.group;
 
 import com.hhs.robot.mirairobot.app.handler.GroupEventCommend;
+import com.hhs.robot.mirairobot.core.annon.Commend;
 import com.hhs.robot.mirairobot.core.component.MessageVO;
 import com.hhs.robot.mirairobot.core.utils.KKUtils;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
-import org.springframework.stereotype.Component;
 
 /**
  * @author hhs
  * @since 2021/2/3 10:15
  */
-@Component
+@Commend(group = { 147392528, 724988240 })
 public class HelpCommend implements GroupEventCommend {
 
     @Override

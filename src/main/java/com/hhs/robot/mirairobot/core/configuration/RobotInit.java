@@ -1,7 +1,6 @@
 package com.hhs.robot.mirairobot.core.configuration;
 
 import com.alibaba.fastjson.JSON;
-import com.hhs.robot.mirairobot.core.factory.BotContainer;
 import com.hhs.robot.mirairobot.core.factory.EventDispatcherFactory;
 import com.hhs.robot.mirairobot.dao.entity.RobotConfigEntity;
 import com.hhs.robot.mirairobot.dao.mapper.RobotConfigMapper;
@@ -53,8 +52,6 @@ public class RobotInit implements CommandLineRunner {
                             setProtocol(MiraiProtocol.ANDROID_PHONE);
                         }
                     });
-                    // 加入容器
-                    BotContainer.addGroupHandler(bot, robotConfigEntity);
                     // 登录
                     bot.login();
                     // 注册监听事件
