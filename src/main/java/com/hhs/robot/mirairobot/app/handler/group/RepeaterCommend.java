@@ -18,7 +18,7 @@ public class RepeaterCommend implements GroupEventCommend {
     @Override
     public MessageVO handlerGroupMessage(GroupMessageEvent groupMessageEvent) {
         // 随机 1/3条重复1条
-        if (RandomUtils.win(3)) {
+        if (RandomUtils.win(1)) {
             return new MessageVO().add(groupMessageEvent.getMessage());
         }
         return null;
